@@ -32,17 +32,18 @@ export default {
     const playerHand = value(null);
     const computerHand = value(null);
 
-    const playerDisplayEmoji = computed(() =>
-      isShowGameHands.value
-        ? handsToEmoji[playerHand.value]
-        : handsToEmoji["rock"]
-    );
-
-    const computerDisplayEmoji = computed(() =>
-      isShowGameHands.value
-        ? handsToEmoji[computerHand.value]
-        : handsToEmoji["rock"]
-    );
+    const computeds = {
+      playerDisplayEmoji: computed(() =>
+        isShowGameHands.value
+          ? handsToEmoji[playerHand.value]
+          : handsToEmoji["rock"]
+      ),
+      computerDisplayEmoji: computed(() =>
+        isShowGameHands.value
+          ? handsToEmoji[computerHand.value]
+          : handsToEmoji["rock"]
+      )
+    };
 
     function sumbmitHand(hand) {
       playerHand.value = hand;
@@ -81,8 +82,7 @@ export default {
       playerHand,
       computerHand,
       sumbmitHand,
-      playerDisplayEmoji,
-      computerDisplayEmoji
+      ...computeds
     };
   }
 };
