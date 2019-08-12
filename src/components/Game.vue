@@ -26,15 +26,27 @@ export default {
     const computerScore = value(0);
 
     const playerHand = value(null);
+    const computerHand = value(null);
 
     function sumbmitHand(hand) {
       playerHand.value = hand;
+      runGame();
+    }
+
+    function randomHand() {
+      const hands = Object.keys(handsToEmoji);
+      return hands[Math.floor(Math.random() * hands.length)];
+    }
+
+    function runGame() {
+      computerHand.value = randomHand();
     }
 
     return {
       playerScore,
       computerScore,
       playerHand,
+      computerHand,
       sumbmitHand
     };
   }
