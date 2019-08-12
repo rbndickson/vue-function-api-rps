@@ -10,9 +10,9 @@
       <div>✊</div>
     </div>
     <ul class="hand-choices">
-      <li>✊</li>
-      <li>✌️</li>
-      <li>🖐️</li>
+      <li :class="{ selected: playerHand === 'rock' }" @click="playerHand = 'rock'">✊</li>
+      <li :class="{ selected: playerHand === 'scissors' }" @click="playerHand = 'scissors'">✌️</li>
+      <li :class="{ selected: playerHand === 'paper' }" @click="playerHand = 'paper'">🖐️</li>
     </ul>
   </div>
 </template>
@@ -25,9 +25,12 @@ export default {
     const playerScore = value(0);
     const computerScore = value(0);
 
+    const playerHand = value(null);
+
     return {
       playerScore,
-      computerScore
+      computerScore,
+      playerHand
     };
   }
 };
@@ -68,5 +71,10 @@ export default {
 .hand-choices li {
   font-size: 15vh;
   list-style: none;
+  cursor: pointer;
+}
+.hand-choices li.selected {
+  text-decoration: lightblue underline;
+  transition: font-size 0.2s;
 }
 </style>
