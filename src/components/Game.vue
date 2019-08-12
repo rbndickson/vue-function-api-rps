@@ -54,9 +54,24 @@ export default {
       return hands[Math.floor(Math.random() * hands.length)];
     }
 
+    function addPointToWinner() {
+      const handToWeakness = {
+        rock: "paper",
+        scissors: "rock",
+        paper: "scissors"
+      };
+
+      if (handToWeakness[computerHand.value] === playerHand.value) {
+        playerScore.value++;
+      } else if (handToWeakness[playerHand.value] === computerHand.value) {
+        computerScore.value++;
+      }
+    }
+
     function runGame() {
       computerHand.value = randomHand();
       isShowGameHands.value = true;
+      addPointToWinner();
     }
 
     return {
