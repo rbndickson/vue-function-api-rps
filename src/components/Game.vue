@@ -2,7 +2,7 @@
   <div>
     <div class="score">
       <div>Player</div>
-      <div>0 - 0</div>
+      <div>{{playerScore}} - {{computerScore}}</div>
       <div>Computer</div>
     </div>
     <div class="player-hands">
@@ -18,8 +18,18 @@
 </template>
 
 <script>
+import { value } from "vue-function-api";
+
 export default {
-  name: "Game"
+  setup() {
+    const playerScore = value(0);
+    const computerScore = value(0);
+
+    return {
+      playerScore,
+      computerScore
+    };
+  }
 };
 </script>
 
