@@ -10,9 +10,9 @@
       <div>✊</div>
     </div>
     <ul class="hand-choices">
-      <li :class="{ selected: playerHand === 'rock' }" @click="playerHand = 'rock'">✊</li>
-      <li :class="{ selected: playerHand === 'scissors' }" @click="playerHand = 'scissors'">✌️</li>
-      <li :class="{ selected: playerHand === 'paper' }" @click="playerHand = 'paper'">🖐️</li>
+      <li :class="{ selected: playerHand === 'rock' }" @click="sumbmitHand('rock')">✊</li>
+      <li :class="{ selected: playerHand === 'scissors' }" @click="sumbmitHand('scissors')">✌️</li>
+      <li :class="{ selected: playerHand === 'paper' }" @click="sumbmitHand('paper')">🖐️</li>
     </ul>
   </div>
 </template>
@@ -27,10 +27,15 @@ export default {
 
     const playerHand = value(null);
 
+    function sumbmitHand(hand) {
+      playerHand.value = hand;
+    }
+
     return {
       playerScore,
       computerScore,
-      playerHand
+      playerHand,
+      sumbmitHand
     };
   }
 };
