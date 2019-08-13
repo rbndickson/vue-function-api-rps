@@ -8,10 +8,10 @@
         </template>
         <template v-else>
           <span class="emoji-button" @click="isEditingName = true">✏️</span>
-          {{playerName}}
+          {{ playerName }}
         </template>
       </div>
-      <div>{{playerScore}} - {{computerScore}}</div>
+      <div>{{ playerScore }} - {{ computerScore }}</div>
       <div>Computer</div>
     </div>
     <div class="player-hands">
