@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="isEditingName" class="emoji-button" @click="submitName">🆗</div>
-    <div v-else class="emoji-button" @click="isEditingName = true">✏️</div>
+    <div v-else class="emoji-button" @click="editName">✏️</div>
 
     <div class="score">
       <div class="input-wrapper" v-if="isEditingName">
@@ -26,17 +26,31 @@
 <script>
 import { value, computed } from "vue-function-api";
 
+function useName() {
+  const playerName = value("Player");
+  const isEditingName = value(false);
+
+  function editName() {
+    isEditingName.value = true;
+  }
+
+  function submitName() {
+    isEditingName.value = false;
+  }
+
+  return { playerName, isEditingName, editName, submitName };
+}
+
 export default {
   setup() {
     const handsToEmoji = { rock: "✊", scissors: "✌️", paper: "🖐️" };
 
     const isShowGameHands = value(false);
 
-    const playerName = value("Player");
-    const isEditingName = value(false);
-
     const playerScore = value(0);
     const computerScore = value(0);
+    // const scores = value({ player: 0, computer: 0 });
+    // needs scores.value.player
 
     const playerHand = value(null);
     const computerHand = value(null);
@@ -84,21 +98,15 @@ export default {
       addPointToWinner();
     }
 
-    function submitName() {
-      isEditingName.value = false;
-    }
-
     return {
       isShowGameHands,
-      playerName,
-      isEditingName,
       playerScore,
       computerScore,
       playerHand,
       computerHand,
       sumbmitHand,
-      submitName,
-      ...computeds
+      ...computeds,
+      ...useName()
     };
   }
 };
