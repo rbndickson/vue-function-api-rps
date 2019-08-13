@@ -1,16 +1,13 @@
 <template>
   <div>
+    <div v-if="isEditingName" class="emoji-button" @click="submitName">🆗</div>
+    <div v-else class="emoji-button" @click="isEditingName = true">✏️</div>
+
     <div class="score">
-      <div>
-        <template v-if="isEditingName">
-          <span class="emoji-button" @click="submitName">🆗</span>
-          <input v-model="playerName" @keyup.enter="submitName" type="text" maxlength="7" />
-        </template>
-        <template v-else>
-          <span class="emoji-button" @click="isEditingName = true">✏️</span>
-          {{ playerName }}
-        </template>
+      <div class="input-wrapper" v-if="isEditingName">
+        <input v-model="playerName" @keyup.enter="submitName" type="text" maxlength="7" />
       </div>
+      <div v-else>{{ playerName }}</div>
       <div>{{ playerScore }} - {{ computerScore }}</div>
       <div>Computer</div>
     </div>
@@ -112,7 +109,7 @@ export default {
   display: flex;
   justify-content: space-between;
   margin-top: 40px;
-  font-size: 5vw;
+  font-size: 18px;
   font-weight: bold;
 }
 .score div:nth-child(1) {
@@ -148,20 +145,24 @@ export default {
   text-decoration: lightblue underline;
   transition: font-size 0.2s;
 }
+.score div {
+  padding: 5px 0;
+}
+.score .input-wrapper {
+  padding: 0;
+}
 input[type="text"] {
-  width: 124px;
+  width: 110px;
   padding: 5px;
-  margin-left: 15px;
+  margin: 0 0 0 15px;
   border: 2px solid #ccc;
   border-radius: 5px;
-  vertical-align: middle;
   font-family: "Courier New", Courier, monospace;
-  font-size: 2vw;
 }
 .emoji-button {
-  float: left;
-  margin-top: 10px;
-  font-size: 3vw;
+  position: fixed;
+  top: 10px;
+  left: 10px;
   cursor: pointer;
 }
 </style>

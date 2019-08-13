@@ -20,7 +20,8 @@ export default {
 <style>
 main {
   font-family: "Courier New", Courier, monospace;
-  max-width: 600px;
+  min-width: 400px;
+  max-width: 800px;
   margin: auto;
 }
 </style>
