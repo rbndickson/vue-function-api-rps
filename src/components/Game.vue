@@ -16,9 +16,9 @@
       <div>{{ computerDisplayEmoji }}</div>
     </div>
     <ul class="hand-choices">
-      <li :class="{ selected: playerHand === 'rock' }" @click="sumbmitHand('rock')">✊</li>
-      <li :class="{ selected: playerHand === 'scissors' }" @click="sumbmitHand('scissors')">✌️</li>
-      <li :class="{ selected: playerHand === 'paper' }" @click="sumbmitHand('paper')">🖐️</li>
+      <li :class="{ selected: playerHand === 'rock' }" @click="submitHand('rock')">✊</li>
+      <li :class="{ selected: playerHand === 'scissors' }" @click="submitHand('scissors')">✌️</li>
+      <li :class="{ selected: playerHand === 'paper' }" @click="submitHand('paper')">🖐️</li>
     </ul>
   </div>
 </template>
@@ -68,7 +68,7 @@ export default {
       )
     };
 
-    function sumbmitHand(hand) {
+    function submitHand(hand) {
       playerHand.value = hand;
       runGame();
     }
@@ -104,7 +104,7 @@ export default {
       computerScore,
       playerHand,
       computerHand,
-      sumbmitHand,
+      submitHand,
       ...computeds,
       ...useName()
     };
